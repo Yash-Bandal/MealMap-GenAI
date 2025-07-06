@@ -8,7 +8,7 @@ import re
 
 
 #set api Key with OSmodule
-os.environ['GOOGLE_API_KEY'] = 'AIzaSyDBoeV02VE3cApEx7dM1fJpWywhextwLdk'
+os.environ['GOOGLE_API_KEY'] = 'Get_Your_API_KEY'
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 
