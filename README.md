@@ -2,7 +2,7 @@
 
 A full-stack health dashboard that recommends personalized diet and workout plans based on custom inputs.
 
-## Project Structure
+## Project Structure 
  
 ```
 Mealmap
