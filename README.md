@@ -10,7 +10,7 @@ Mealmap
 │   ├── app.py
 │   ├── requirements.txt
 │   └── templates/
-│       └── index.html   #use to test api
+│       └── index.html   #use to test the apis
 │
 └── frontend/
     └── health-dashboard/
