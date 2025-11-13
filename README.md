@@ -97,6 +97,8 @@ Mealmap
   > Ensure that app.py opens at `http://127.0.0.1:5000/`, if different, change the endpoint in reactapp
   ---
 
+<br>
+
 ### Frontend
 
 1. Navigate to the frontend app:
