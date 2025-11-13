@@ -83,9 +83,9 @@ Mealmap
    ```bash
    pip install flask flask-cors dotenv google_generativeai
    ```
-   ```
-   Update the Model and API KEY Latest
-   ```
+   ---
+   > Update the Model and API KEY Latest
+   --- 
 
 4. Run the Flask server:
 
