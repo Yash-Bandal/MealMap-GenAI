@@ -8,9 +8,23 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 CORS(app)
 
-load_dotenv()
+# load_dotenv()
+# render
+if os.getenv("RENDER") is None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+
 # Initialize Gemini client (reads from environment variable)
-client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+# client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+
+    #render
+api_key = os.environ.get("GOOGLE_API_KEY")
+
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY not set")
+
+client = genai.Client(api_key=api_key)
 
 # Clean markdown function
 def clean_markdown(text):
