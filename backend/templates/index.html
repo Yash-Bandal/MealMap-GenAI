@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Diet and Workout Recommendations</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #4A90E2;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+        }
+
+        .result-buttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .result-buttons button {
+            margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+            /* Location of the box */
+        }
+
+        .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.modal-content h3 {
+    color: #4A90E2;
+    font-size: 22px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4A90E2;
+    padding-bottom: 5px;
+}
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 5px 0;
+            font-size: 16px;
+        }
+
+        ul.numbered-list {
+            padding-left: 20px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        ul.numbered-list li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- input form  -->
+    <div class="container">
+        <h2>Personalized Diet & Workout Planner</h2>
+        <form action="/recommendations" method="POST">
+            <label>Dietary Preferences:</label>
+            <input type="text" name="dietary_preferences" placeholder="e.g., vegetarian, high-protein" required>
+
+            <label>Fitness Goals:</label>
+            <input type="text" name="fitness_goals" placeholder="e.g., weight loss, muscle gain" required>
+
+            <label>Lifestyle Factors:</label>
+            <input type="text" name="lifestyle_factors" placeholder="e.g., active, sedentary" required>
+
+            <label>Dietary Restrictions:</label>
+            <input type="text" name="dietary_restrictions" placeholder="e.g., gluten-free, lactose-intolerant" required>
+
+            <label>Health Conditions:</label>
+            <input type="text" name="health_conditions" placeholder="e.g., diabetes, high blood pressure" required>
+
+            <label>Your Query:</label>
+            <textarea name="user_query" placeholder="Describe your goal briefly" required></textarea>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="container">
+        {% if recommendations %}
+        <h2>Recommendations</h2>
+
+        <!-- Action Buttons -->
+        <div class="result-buttons">
+            <button onclick="showModal('dietModal')">View Diet Types</button>
+            <button onclick="showModal('workoutModal')">View Workout Options</button>
+            <button onclick="showModal('breakfastModal')">View Breakfast Ideas</button>
+            <button onclick="showModal('dinnerModal')">View Dinner Options</button>
+            <button onclick="showModal('tipsModal')">View Additional Tips</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Modals -->
+    <div id="dietModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dietModal')">&times;</span>
+            <h3>Diet Types</h3>
+            <ul class="numbered-list">
+                {% for diet in recommendations.diet_types %}
+                <li>{{ diet }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+    <div id="workoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('workoutModal')">&times;</span>
+            <h3>Workout Options</h3>
+            <ul>
+                {% for workout in recommendations.workouts %}
+                <li>{{ workout }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="breakfastModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('breakfastModal')">&times;</span>
+            <h3>Breakfast Ideas</h3>
+            <ul>
+                {% for breakfast in recommendations.breakfasts %}
+                <li>{{ breakfast }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="dinnerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dinnerModal')">&times;</span>
+            <h3>Dinner Options</h3>
+            <ul>
+                {% for dinner in recommendations.dinners %}
+                <li>{{ dinner }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="tipsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tipsModal')">&times;</span>
+            <h3>Additional Tips</h3>
+            <ul>
+                {% for tip in recommendations.additional_tips %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close modals when clicking outside of them
+        window.onclick = function (event) {
+            const modals = document.getElementsByClassName("modal");
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
