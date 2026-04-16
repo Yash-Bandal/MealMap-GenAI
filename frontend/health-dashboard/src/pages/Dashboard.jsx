@@ -70,8 +70,8 @@ const Dashboard = () => {
     setFormValues(data);
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/recommendations", {
-        // const res = await fetch("https://mealmap-genai.onrender.com/recommendations", {
+      // const res = await fetch("http://127.0.0.1:5000/recommendations", {
+        const res = await fetch("https://mealmap-genai.onrender.com/recommendations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
