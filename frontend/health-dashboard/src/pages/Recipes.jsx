@@ -242,7 +242,9 @@ const Recipes = () => {
   const [activeTag, setActiveTag] = useState("All");
   const [selected, setSelected] = useState(null);
   const [saved, setSaved] = useState(() => new Set());
-
+  
+  const [showAll, setShowAll] = useState(false);
+  
   const tags = useMemo(() => {
     const all = new Set();
     for (const r of RECIPES) for (const t of r.tags) all.add(t);
@@ -268,6 +270,10 @@ const Recipes = () => {
     });
   }, [activeTag, query]);
 
+
+  const visibleRecipes = showAll ? filtered : filtered.slice(0, 6);
+
+  
   const toggleSaved = (id) => {
     setSaved((prev) => {
       const next = new Set(prev);
@@ -347,7 +353,7 @@ const Recipes = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((r) => {
+        {visibleRecipes.map((r) => {
           const accent = TAG_STYLES[r.tags[0]] || TAG_STYLES["High Protein"];
           const isSaved = saved.has(r.id);
 
@@ -426,6 +432,17 @@ const Recipes = () => {
           );
         })}
       </div>
+
+      {filtered.length > 6 && (
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setShowAll((prev) => !prev)}
+          className="px-6 py-2 rounded-xl bg-[#FF5E57] text-white text-sm font-semibold hover:bg-[#ff4b43] transition"
+        >
+          {showAll ? "Show Less" : "View More"}
+        </button>
+      </div>
+    )}
 
       {filtered.length === 0 && (
         <div className="rounded-3xl border border-black/5 bg-white/70 p-10 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#0c0d0f]/70">
