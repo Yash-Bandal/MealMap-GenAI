@@ -815,16 +815,16 @@ const Recipes = () => {
         })}
       </div>
 
-      {filtered.length > 6 && (
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={() => setShowAll((prev) => !prev)}
-          className="px-6 py-2 rounded-xl bg-[#FF5E57] text-white text-sm font-semibold hover:bg-[#ff4b43] transition"
-        >
-          {showAll ? "Show Less" : "View More"}
-        </button>
-      </div>
-    )}
+{filtered.length > 6 && (
+  <div className="flex justify-end mt-4">
+    <button
+      onClick={() => setShowAll((prev) => !prev)}
+      className="rounded-xl border border-black/10 bg-transparent px-5 py-2 text-sm font-medium text-gray-700 transition hover:bg-black/5 dark:border-white/10 dark:text-gray-200 dark:hover:bg-white/10"
+    >
+      {showAll ? "Show Less" : "View More"}
+    </button>
+  </div>
+)}
 
       {filtered.length === 0 && (
         <div className="rounded-3xl border border-black/5 bg-white/70 p-10 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#0c0d0f]/70">
