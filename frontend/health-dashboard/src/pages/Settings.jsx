@@ -22,14 +22,14 @@ const Developers = () => {
         {/* Links (optional minimal presence) */}
         <div className="flex items-center justify-center gap-4">
           <a
-            href="#"
+            href="https://github.com/Yash-Bandal"
             className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition dark:bg-white/10 dark:hover:bg-white/20"
           >
             <Github className="h-4 w-4 text-gray-700 dark:text-gray-300" />
           </a>
 
           <a
-            href="#"
+            href="https://www.linkedin.com/in/yash-bandal"
             className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition dark:bg-white/10 dark:hover:bg-white/20"
           >
             <Linkedin className="h-4 w-4 text-gray-700 dark:text-gray-300" />
