@@ -696,7 +696,7 @@ const Recipes = () => {
               <input
                 id="recipeSearch"
                 type="text"
-                placeholder='Search "chicken", "lentil", "spinach"...'
+                placeholder='Search "Protein", "lentil", "spinach"...'
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full rounded-2xl border border-gray-200 bg-white px-12 py-3 text-sm text-gray-900 shadow-sm outline-none placeholder:text-gray-400 focus:border-gray-300 focus:ring-2 focus:ring-[#FF5E57]/30 dark:border-white/10 dark:bg-black/30 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-white/20"
