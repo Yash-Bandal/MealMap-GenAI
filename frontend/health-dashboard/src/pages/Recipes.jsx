@@ -12,11 +12,12 @@ import {
 import { Fragment, useMemo, useState } from "react";
 
 const RECIPES = [
+  // --- ORIGINAL 8 RECIPES (100% Plant-Based) ---
   {
     id: "tofu-tikka-masala",
     title: "Vegan Tofu Tikka Masala",
     description: "Firm tofu cubes marinated and grilled, served in a creamy tomato gravy made with cashew cream.",
-    youtube: "https://www.youtube.com/watch?v=fS3I_X8HwzM", // Note: A classic vegan adaptation by Vegan Richa
+    youtube: "https://www.youtube.com/results?search_query=vegan+tofu+tikka+masala+recipe", 
     tags: ["North Indian", "High Protein", "Vegan"],
     timeMinutes: 35,
     difficulty: "Medium",
@@ -47,7 +48,7 @@ const RECIPES = [
     id: "vegan-dal-makhani",
     title: "Vegan Dal Makhani",
     description: "Slow-cooked black lentils made creamy with coconut milk and vegan butter. Smoky and rich.",
-    youtube: "https://www.youtube.com/watch?v=ytE3_S7fOTo",
+    youtube: "https://www.youtube.com/results?search_query=vegan+dal+makhani+recipe",
     tags: ["Punjabi", "High Protein", "Vegan"],
     timeMinutes: 50,
     difficulty: "Medium",
@@ -74,7 +75,7 @@ const RECIPES = [
     id: "palak-tofu",
     title: "Palak Tofu (Vegan Palak Paneer)",
     description: "Nutritious spinach greens with pan-seared tofu cubes in a savory, dairy-free sauce.",
-    youtube: "https://www.youtube.com/watch?v=9ZE2yNyG6is",
+    youtube: "https://www.youtube.com/results?search_query=vegan+palak+paneer+tofu",
     tags: ["North Indian", "Vegan", "Iron Rich"],
     timeMinutes: 25,
     difficulty: "Easy",
@@ -101,7 +102,7 @@ const RECIPES = [
     id: "chana-masala",
     title: "Authentic Chana Masala",
     description: "Classic spicy chickpeas in a tangy gravy. Naturally vegan and packed with fiber.",
-    youtube: "https://www.youtube.com/watch?v=TTuynri8jv8",
+    youtube: "https://www.youtube.com/results?search_query=authentic+vegan+chana+masala",
     tags: ["North Indian", "High Protein", "Vegan"],
     timeMinutes: 30,
     difficulty: "Easy",
@@ -126,7 +127,7 @@ const RECIPES = [
     id: "vegan-biryani",
     title: "Vegetable Dum Biryani",
     description: "Aromatic basmati rice and vegetables infused with saffron and whole spices.",
-    youtube: "https://www.youtube.com/watch?v=HP2bVwNHJfM",
+    youtube: "https://www.youtube.com/results?search_query=vegan+vegetable+dum+biryani",
     tags: ["Main Course", "One Pot", "Vegan"],
     timeMinutes: 45,
     difficulty: "Medium",
@@ -151,7 +152,7 @@ const RECIPES = [
     id: "moong-dal-cheela",
     title: "Moong Dal Cheela (No Paneer)",
     description: "Savory lentil pancakes stuffed with spiced vegetables and herbs.",
-    youtube: "https://www.youtube.com/watch?v=tB5Ip1p4xpo",
+    youtube: "https://www.youtube.com/results?search_query=vegan+moong+dal+cheela",
     tags: ["High Protein", "Breakfast", "Vegan"],
     timeMinutes: 20,
     difficulty: "Easy",
@@ -176,7 +177,7 @@ const RECIPES = [
     id: "aloo-gobi",
     title: "Aloo Gobi",
     description: "The quintessential Indian vegan comfort food: potatoes and cauliflower stir-fry.",
-    youtube: "https://www.youtube.com/watch?v=KNpKoOpFALg",
+    youtube: "https://www.youtube.com/results?search_query=traditional+aloo+gobi+vegan",
     tags: ["Side Dish", "Vegan", "Classic"],
     timeMinutes: 25,
     difficulty: "Easy",
@@ -200,7 +201,7 @@ const RECIPES = [
     id: "baingan-bharta",
     title: "Baingan Bharta",
     description: "Fire-roasted eggplant mashed with aromatics. Naturally vegan and smoky.",
-    youtube: "https://www.youtube.com/watch?v=Hkl8Y_WHacQ",
+    youtube: "https://www.youtube.com/results?search_query=smoky+baingan+bharta+recipe",
     tags: ["North Indian", "Vegan", "Smoky"],
     timeMinutes: 30,
     difficulty: "Medium",
@@ -220,9 +221,390 @@ const RECIPES = [
       "Mix in mashed eggplant and spices; cook for 10 minutes.",
     ],
   },
+
+  // --- NEW RECIPES (KETO, HIGH PROTEIN, ETC.) ---
+  {
+    id: "keto-zucchini-noodles-pesto",
+    title: "Keto Zucchini Noodles with Avocado Pesto",
+    description: "Low-carb zucchini noodles tossed in a rich, dairy-free avocado and walnut pesto.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+keto+zucchini+noodles+avocado+pesto",
+    tags: ["Keto", "Vegan", "Raw", "Low Carb"],
+    timeMinutes: 15,
+    difficulty: "Easy",
+    calories: 320,
+    proteinGrams: 6,
+    ingredients: [
+      "2 large zucchinis (spiralized into noodles)",
+      "1 ripe avocado",
+      "1 cup fresh basil leaves",
+      "1/4 cup walnuts or pine nuts",
+      "2 cloves garlic",
+      "2 tbsp olive oil",
+      "1 tbsp lemon juice",
+      "Salt and pepper to taste"
+    ],
+    steps: [
+      "In a food processor, blend avocado, basil, walnuts, garlic, olive oil, lemon juice, salt, and pepper until smooth.",
+      "Spiralize the zucchinis into noodles.",
+      "Gently toss the raw zucchini noodles with the avocado pesto.",
+      "Serve immediately (do not heat to prevent avocado from turning bitter)."
+    ]
+  },
+  {
+    id: "keto-cauliflower-fried-rice",
+    title: "Vegan Keto Cauliflower Fried Rice",
+    description: "A low-carb, plant-based twist on a takeout classic using riced cauliflower and scrambled tofu.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+keto+cauliflower+fried+rice",
+    tags: ["Keto", "Vegan", "Low Carb", "Asian Inspired"],
+    timeMinutes: 20,
+    difficulty: "Easy",
+    calories: 250,
+    proteinGrams: 15,
+    ingredients: [
+      "3 cups cauliflower rice",
+      "150g firm tofu (crumbled)",
+      "1/2 cup mixed keto-friendly veggies (bell peppers, green beans)",
+      "2 tbsp soy sauce or tamari",
+      "1 tbsp sesame oil",
+      "1 tsp ginger (minced)",
+      "2 cloves garlic (minced)",
+      "Green onions for garnish"
+    ],
+    steps: [
+      "Heat sesame oil in a wok. Sauté garlic and ginger until fragrant.",
+      "Add crumbled tofu (acting as 'egg') and cook until slightly browned.",
+      "Add keto-friendly veggies and sauté for 3 minutes.",
+      "Add cauliflower rice and soy sauce. Stir-fry for another 5 minutes until tender.",
+      "Garnish with green onions and serve hot."
+    ]
+  },
+  {
+    id: "rajma-masala",
+    title: "Punjabi Rajma Masala",
+    description: "Hearty red kidney beans simmered in a robust, spiced tomato and onion gravy.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+punjabi+rajma+masala",
+    tags: ["North Indian", "High Fiber", "Vegan", "High Protein"],
+    timeMinutes: 40,
+    difficulty: "Medium",
+    calories: 380,
+    proteinGrams: 16,
+    ingredients: [
+      "1.5 cups kidney beans (soaked overnight and boiled)",
+      "2 onions (finely chopped)",
+      "3 tomatoes (pureed)",
+      "1 tbsp ginger-garlic paste",
+      "2 tsp rajma masala",
+      "1 tsp cumin seeds",
+      "2 tbsp oil",
+      "Fresh coriander leaves"
+    ],
+    steps: [
+      "Heat oil, crackle cumin seeds, and sauté onions until deep brown.",
+      "Add ginger-garlic paste and tomato puree. Cook until oil separates.",
+      "Add rajma masala and a splash of water, cooking the spices.",
+      "Add boiled kidney beans along with some of their cooking water.",
+      "Simmer for 15-20 minutes to let flavors meld. Garnish with coriander."
+    ]
+  },
+  {
+    id: "keto-coconut-curry-tofu",
+    title: "Keto Coconut Curry Tofu",
+    description: "A rich, low-carb Thai-inspired curry made with full-fat coconut milk and protein-packed tofu.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+keto+coconut+curry+tofu",
+    tags: ["Keto", "Vegan", "Gluten-Free", "High Fat"],
+    timeMinutes: 25,
+    difficulty: "Easy",
+    calories: 410,
+    proteinGrams: 18,
+    ingredients: [
+      "200g firm tofu (cubed)",
+      "1 cup full-fat coconut milk",
+      "1 tbsp red curry paste (ensure no shrimp paste)",
+      "1 cup broccoli florets",
+      "1/2 cup sliced zucchini",
+      "1 tbsp coconut oil",
+      "Fresh basil leaves"
+    ],
+    steps: [
+      "Heat coconut oil in a pan and pan-fry tofu cubes until golden. Remove and set aside.",
+      "In the same pan, cook the red curry paste for 1 minute until fragrant.",
+      "Stir in coconut milk and bring to a gentle simmer.",
+      "Add broccoli and zucchini, cooking until just tender (about 5 mins).",
+      "Return tofu to the pan, garnish with fresh basil, and serve."
+    ]
+  },
+  {
+    id: "quinoa-upma",
+    title: "Quinoa Upma",
+    description: "A healthy, protein-rich twist on the classic South Indian breakfast dish using quinoa instead of semolina.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+quinoa+upma+recipe",
+    tags: ["Breakfast", "Gluten-Free", "Vegan", "High Protein"],
+    timeMinutes: 25,
+    difficulty: "Easy",
+    calories: 280,
+    proteinGrams: 9,
+    ingredients: [
+      "1 cup quinoa (rinsed well)",
+      "1 onion (chopped)",
+      "1/2 cup mixed veggies (peas, carrots)",
+      "1 tsp mustard seeds",
+      "1 tsp urad dal (split black lentils)",
+      "10-12 curry leaves",
+      "1-2 green chilies",
+      "2 tbsp oil",
+      "Lemon juice"
+    ],
+    steps: [
+      "Boil quinoa with 2 cups of water until cooked and fluffy. Set aside.",
+      "Heat oil in a pan, add mustard seeds and let them splutter. Add urad dal and fry until golden.",
+      "Add curry leaves, green chilies, and onions. Sauté until onions are translucent.",
+      "Add mixed veggies, a pinch of turmeric, and salt. Cook until tender.",
+      "Mix in the cooked quinoa, squeeze lemon juice on top, and serve."
+    ]
+  },
+  {
+    id: "keto-broccoli-almond-soup",
+    title: "Vegan Keto Broccoli Almond Soup",
+    description: "A creamy, dairy-free, and low-carb soup perfect for cold days, thickened with almonds.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+keto+broccoli+almond+soup",
+    tags: ["Keto", "Vegan", "Soup", "Low Carb"],
+    timeMinutes: 20,
+    difficulty: "Easy",
+    calories: 220,
+    proteinGrams: 8,
+    ingredients: [
+      "2 cups broccoli florets",
+      "1/4 cup almonds (soaked and peeled)",
+      "1 onion (chopped)",
+      "2 cloves garlic",
+      "2 cups vegetable broth",
+      "1 tbsp olive oil",
+      "Salt and black pepper to taste"
+    ],
+    steps: [
+      "Heat olive oil in a pot. Sauté garlic and onions until soft.",
+      "Add broccoli and vegetable broth. Boil until broccoli is tender (about 10 mins).",
+      "Add the soaked almonds into the pot.",
+      "Use an immersion blender (or transfer to a standard blender) to blend until completely smooth and creamy.",
+      "Season with salt and black pepper. Serve hot."
+    ]
+  },
+  {
+    id: "masoor-dal",
+    title: "Masoor Dal (Red Lentil Curry)",
+    description: "A quick-cooking, protein-packed red lentil soup tempered with garlic and cumin.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+masoor+dal+tadka",
+    tags: ["High Protein", "Vegan", "Gluten-Free", "Comfort Food"],
+    timeMinutes: 25,
+    difficulty: "Easy",
+    calories: 310,
+    proteinGrams: 18,
+    ingredients: [
+      "1 cup split red lentils (masoor dal), washed",
+      "1 tomato (chopped)",
+      "1 tsp turmeric powder",
+      "3 cloves garlic (minced)",
+      "1 tsp cumin seeds",
+      "1-2 dried red chilies",
+      "2 tbsp oil or vegan butter",
+      "Fresh coriander"
+    ],
+    steps: [
+      "Boil the washed lentils with turmeric, tomato, and salt in 3 cups of water until soft and mushy.",
+      "In a small pan, heat oil/vegan butter for the tadka (tempering).",
+      "Add cumin seeds, dried red chilies, and minced garlic. Sauté until garlic is golden brown.",
+      "Pour the hot oil mixture immediately over the cooked dal.",
+      "Garnish with coriander and serve with rice or roti."
+    ]
+  },
+  {
+    id: "bhindi-masala",
+    title: "Bhindi Masala (Spiced Okra)",
+    description: "Stir-fried okra with onions, tomatoes, and tangy spices. Naturally low-carb.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+bhindi+masala+recipe",
+    tags: ["Keto Friendly", "Vegan", "Side Dish", "Low Carb"],
+    timeMinutes: 25,
+    difficulty: "Easy",
+    calories: 180,
+    proteinGrams: 4,
+    ingredients: [
+      "250g okra (bhindi), washed, dried completely, and chopped",
+      "1 large onion (sliced)",
+      "1 tomato (chopped)",
+      "1 tsp coriander powder",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp amchur (dry mango powder)",
+      "2 tbsp cooking oil"
+    ],
+    steps: [
+      "Heat 1 tbsp oil in a pan and fry the chopped okra until it's no longer slimy. Remove and set aside.",
+      "In the same pan, add remaining oil and sauté sliced onions until golden.",
+      "Add tomatoes, turmeric, and coriander powder. Cook until tomatoes soften.",
+      "Add the fried okra back in, along with salt and amchur powder.",
+      "Stir gently and cook for another 5 minutes uncovered. Serve hot."
+    ]
+  },
+  {
+    id: "tofu-bhurji",
+    title: "Vegan Tofu Bhurji (Scramble)",
+    description: "An Indian-spiced scrambled tofu that mimics scrambled eggs or paneer bhurji. High protein and keto-friendly.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+tofu+bhurji+scramble",
+    tags: ["Keto", "High Protein", "Breakfast", "Vegan"],
+    timeMinutes: 15,
+    difficulty: "Easy",
+    calories: 240,
+    proteinGrams: 20,
+    ingredients: [
+      "200g firm tofu (crumbled)",
+      "1 onion (finely chopped)",
+      "1 tomato (finely chopped)",
+      "1 green chili (chopped)",
+      "1/2 tsp turmeric",
+      "1/2 tsp cumin seeds",
+      "1 tbsp oil",
+      "Fresh coriander"
+    ],
+    steps: [
+      "Heat oil in a pan and add cumin seeds. Let them splutter.",
+      "Add onions and green chili, sautéing until onions are translucent.",
+      "Add tomatoes and turmeric, cooking until the tomatoes soften.",
+      "Stir in the crumbled tofu and salt. Cook for 5-7 minutes, letting the tofu absorb the flavors.",
+      "Garnish with fresh coriander. Great on toast or wrapped in a keto tortilla."
+    ]
+  },
+  {
+    id: "soya-chunks-curry",
+    title: "Soya Chunks Curry",
+    description: "A highly nutritious, protein-dense curry made with textured vegetable protein (TVP/soya chunks).",
+    youtube: "https://www.youtube.com/results?search_query=vegan+soya+chunks+curry",
+    tags: ["High Protein", "Vegan", "Main Course"],
+    timeMinutes: 35,
+    difficulty: "Medium",
+    calories: 320,
+    proteinGrams: 28,
+    ingredients: [
+      "1 cup soya chunks (TVP)",
+      "2 onions (pureed or finely chopped)",
+      "2 tomatoes (pureed)",
+      "1 tbsp ginger-garlic paste",
+      "1 tsp garam masala",
+      "1/2 tsp red chili powder",
+      "2 tbsp oil",
+      "Salt to taste"
+    ],
+    steps: [
+      "Boil soya chunks in salted water for 10 minutes until soft. Squeeze out all excess water and set aside.",
+      "Heat oil, add onion puree, and sauté until lightly browned.",
+      "Add ginger-garlic paste and tomato puree. Cook until oil separates from the edges.",
+      "Add spices (garam masala, chili powder) and a little water to form a gravy.",
+      "Toss in the boiled soya chunks, cover, and simmer for 10 minutes so they soak up the gravy."
+    ]
+  },
+  {
+    id: "keto-cabbage-wraps",
+    title: "Keto Vegan Cabbage Wraps",
+    description: "Crispy cabbage leaves stuffed with a savory mixture of mushrooms, tofu, and soy sauce.",
+    youtube: "https://www.youtube.com/results?search_query=keto+vegan+cabbage+wraps",
+    tags: ["Keto", "Vegan", "Low Carb", "Appetizer"],
+    timeMinutes: 20,
+    difficulty: "Medium",
+    calories: 190,
+    proteinGrams: 10,
+    ingredients: [
+      "6 large cabbage leaves (blanched to soften)",
+      "100g firm tofu (crumbled)",
+      "1 cup mushrooms (finely chopped)",
+      "2 spring onions (chopped)",
+      "2 tbsp soy sauce or coconut aminos",
+      "1 tbsp sesame oil",
+      "1 tsp minced garlic"
+    ],
+    steps: [
+      "Carefully peel and blanch the cabbage leaves in boiling water for 2 minutes. Pat dry.",
+      "Heat sesame oil in a skillet. Add garlic, mushrooms, and tofu. Stir-fry until moisture evaporates.",
+      "Add soy sauce and spring onions. Cook for another 2 minutes. Let the filling cool slightly.",
+      "Place a scoop of the filling into the center of each blanched cabbage leaf.",
+      "Roll them up like a burrito. Serve with a low-carb dipping sauce."
+    ]
+  },
+  {
+    id: "chia-seed-pudding",
+    title: "Keto Coconut Chia Pudding",
+    description: "A super-easy, high-fiber, low-carb breakfast or dessert made with chia seeds and coconut milk.",
+    youtube: "https://www.youtube.com/results?search_query=keto+vegan+chia+pudding",
+    tags: ["Keto", "Vegan", "Breakfast", "No Cook"],
+    timeMinutes: 5,
+    difficulty: "Easy",
+    calories: 210,
+    proteinGrams: 6,
+    ingredients: [
+      "3 tbsp chia seeds",
+      "1 cup unsweetened coconut milk (from a carton or can)",
+      "1/2 tsp vanilla extract",
+      "1-2 drops liquid stevia or monk fruit sweetener (optional)",
+      "A few raspberries for topping (keto-friendly)"
+    ],
+    steps: [
+      "In a jar or bowl, whisk together the chia seeds, coconut milk, vanilla, and sweetener.",
+      "Let it sit for 5 minutes, then whisk again to prevent clumping.",
+      "Cover and refrigerate for at least 2 hours, or overnight for best results.",
+      "Top with a few fresh raspberries before serving."
+    ]
+  },
+  {
+    id: "spinach-mushroom-stir-fry",
+    title: "Vegan Keto Spinach & Mushroom Stir-fry",
+    description: "A lightning-fast, ultra-low-carb side dish packed with vitamins and savory umami flavor.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+keto+spinach+mushroom+stir+fry",
+    tags: ["Keto", "Vegan", "Low Carb", "Side Dish"],
+    timeMinutes: 10,
+    difficulty: "Easy",
+    calories: 140,
+    proteinGrams: 5,
+    ingredients: [
+      "2 cups fresh spinach",
+      "1.5 cups button mushrooms (sliced)",
+      "2 cloves garlic (minced)",
+      "1 tbsp olive oil",
+      "1 tbsp soy sauce or coconut aminos",
+      "Sesame seeds for garnish"
+    ],
+    steps: [
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Add minced garlic and sliced mushrooms. Sauté until mushrooms are browned.",
+      "Pour in the soy sauce/coconut aminos and stir well.",
+      "Add fresh spinach and toss continuously for about 1-2 minutes until just wilted.",
+      "Remove from heat, garnish with sesame seeds, and serve immediately."
+    ]
+  },
+  {
+    id: "roasted-chickpea-salad",
+    title: "Crispy Roasted Chickpea Salad",
+    description: "A refreshing and crunchy salad loaded with protein-rich roasted chickpeas and a lemon-tahini dressing.",
+    youtube: "https://www.youtube.com/results?search_query=vegan+roasted+chickpea+salad",
+    tags: ["Salad", "Vegan", "High Protein", "Gluten-Free"],
+    timeMinutes: 30,
+    difficulty: "Easy",
+    calories: 340,
+    proteinGrams: 14,
+    ingredients: [
+      "1 can (400g) chickpeas, rinsed and thoroughly dried",
+      "1 tbsp olive oil + 1 tsp paprika (for roasting)",
+      "2 cups mixed salad greens (lettuce, spinach, arugula)",
+      "1 cucumber (diced)",
+      "1 cup cherry tomatoes (halved)",
+      "2 tbsp tahini",
+      "1 tbsp lemon juice",
+      "Water to thin dressing"
+    ],
+    steps: [
+      "Toss dried chickpeas with 1 tbsp olive oil, paprika, and salt. Roast in the oven at 200°C (400°F) for 20-25 mins until crispy.",
+      "While chickpeas roast, assemble greens, cucumber, and tomatoes in a large bowl.",
+      "In a small bowl, whisk tahini, lemon juice, salt, and a splash of water until a pourable dressing forms.",
+      "Top the salad with warm crispy chickpeas and drizzle the tahini dressing over the top."
+    ]
+  }
 ];
-
-
 
 const TAG_STYLES = {
   Keto: "from-orange-500 via-rose-500 to-fuchsia-500",
