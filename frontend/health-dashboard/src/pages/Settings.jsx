@@ -7,8 +7,8 @@ const Developers = () => {
       <div className="text-center space-y-6">
 
         {/* Name */}
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          YB Studios
+        <h1 className="text-4xl sm:text-5xl font-semibold font-roboto tracking-tight text-gray-900 dark:text-white">
+          YB Studios™
         </h1>
 
         {/* Subtitle */}
