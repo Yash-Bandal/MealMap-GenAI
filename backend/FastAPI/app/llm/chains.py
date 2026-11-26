@@ -1,7 +1,6 @@
-
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from app.ai.prompts import recommendation_prompt
+from app.llm.prompts import recommendation_prompt
 from app.core.config import settings
 from app.schemas.recommendation import Recommendations
 

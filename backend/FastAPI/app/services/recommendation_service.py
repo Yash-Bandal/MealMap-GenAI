@@ -1,4 +1,4 @@
-from app.ai.chains import recommendation_chain
+from app.llm.chains import recommendation_chain
 from app.schemas.recommendation import (
     RecommendationRequest,
     Recommendations,
