@@ -1,16 +1,25 @@
 # MealMap-AI
- 
+
 A fullstack health dashboard that recommends personalized diet and workout plans based on custom inputs.
 
-## Project Structure 
- 
-```
-Mealmap
+## Project Structure
+
+```text
+MealMap
 ├── backend/
-│   ├── app.py
-│   ├── requirements.txt
-│   └── templates/
-│       └── index.html   #use to test the apis
+│   ├── FastAPI/              # FastAPI implementation
+│   │   ├── app/
+│   │   │   ├── api/
+│   │   │   │   └── routes/
+│   │   │   ├── core/
+│   │   │   ├── llm/
+│   │   │   ├── schemas/
+│   │   │   ├── services/
+│   │   │   └── main.py
+│   │   ├── .env.example
+│   │   └── requirements.txt
+│   │
+│   └── flask/                 # Flask implementation
 │
 └── frontend/
     └── health-dashboard/
@@ -24,20 +33,16 @@ Mealmap
         │   ├── index.css
         │   ├── App.css
         │   ├── assets/
-        │   │   └── icons/
         │   ├── components/
-        │   │   └── form/
         │   ├── hooks/
-        │   │   └── useTheme.js
         │   └── pages/
         ├── public/
         ├── eslint.config.js
         ├── postcss.config.js
-        ├── package-lock.json
+        └── package-lock.json
 ```
 
 <br>
-
 
 <table>
   <tr>
@@ -58,20 +63,32 @@ Mealmap
 
 ## Getting Started
 
-### Backend
+### Backend — FastAPI
 
-1. Navigate to the backend directory:
+The current backend uses **FastAPI**, **Pydantic**, and **LangChain** with Google's Gemini model.
+
+1. Navigate to the FastAPI backend:
 
    ```bash
-   cd backend
+   cd backend/FastAPI
    ```
 
 2. Create and activate a virtual environment:
 
    ```bash
    python -m venv myvenv
-   myvenv\Scripts\activate   # On Windows
-   source myvenv/bin/activate  # On macOS/Linux
+   ```
+
+   **Windows (PowerShell):**
+
+   ```powershell
+   .\myvenv\Scripts\Activate.ps1
+   ```
+
+   **macOS/Linux:**
+
+   ```bash
+   source myvenv/bin/activate
    ```
 
 3. Install dependencies:
@@ -79,23 +96,31 @@ Mealmap
    ```bash
    pip install -r requirements.txt
    ```
-   If unable to install
-   ```bash
-   pip install flask flask-cors dotenv google_generativeai
-   ```
-   ---
-   > Update the Model and API KEY Latest
-   --- 
 
-4. Run the Flask server:
+4. Configure environment variables:
 
-   ```bash
-   python app.py
+   Copy `.env.example` to a new file named `.env` and add your Google AI API key.
+
+   ```env
+   GOOGLE_API_KEY=your_google_api_key
+   GEMINI_MODEL=gemini-3.5-flash-lite
    ```
 
-  ---
-  > Ensure that app.py opens at `http://127.0.0.1:5000/`, if different, change the endpoint in reactapp
-  ---
+   Keep your `.env` file private. Do not commit API keys to GitHub.
+
+5. Start the FastAPI development server from inside `backend/FastAPI`:
+
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+
+6. Open the API:
+
+   - API base URL: http://127.0.0.1:8000
+   - Interactive Swagger documentation: http://127.0.0.1:8000/docs
+   - ReDoc documentation: http://127.0.0.1:8000/redoc
+
+
 
 <br>
 
@@ -121,24 +146,25 @@ Mealmap
 
 4. Open in browser:
 
-   ```
+   ```text
    http://localhost:5173
    ```
 
 ## Features
 
-* Personalized diet and workout recommendation form with Google-Generative AI.
-* Smart Form Handling: Built with React Hook Form
-* Modern UI: Clean, responsive dashboard built using Tailwind CSS.
-* Dark Mode Support: Toggle between light and dark themes for better accessibility.
-* Seamless integration between frontend and backend.
-* Modular components and clean folder structure
+* Personalized diet and workout recommendations powered by Google's Gemini model.
+* Structured AI responses using LangChain and Pydantic.
+* FastAPI backend with modular routing and service organization.
+* Smart form handling built with React Hook Form.
+* Modern, responsive dashboard built using Tailwind CSS.
+* Dark mode support.
+* Seamless integration between the React frontend and FastAPI backend.
 
 ## License
-[MIT Licence](https://github.com/Yash-Bandal/MealMap-GenAI/blob/370c61b875e8bf942de685c40b9f55702d2c4842/LICENSE)
 
+[MIT License](https://github.com/Yash-Bandal/MealMap-GenAI/blob/370c61b875e8bf942de685c40b9f55702d2c4842/LICENSE)
 
-##  Connect
+## Connect
 
 * Author: [@Yash-Bandal](https://github.com/Yash-Bandal)
 
