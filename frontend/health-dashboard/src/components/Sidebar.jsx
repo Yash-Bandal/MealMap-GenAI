@@ -1,10 +1,7 @@
-// src/components/Sidebar.jsx
+
 import { NavLink } from "react-router-dom";
 import {
     FaUtensils,
-    FaCarrot,
-    FaDumbbell,
-    FaRunning,
     FaCog,
     FaHome,
     FaSignOutAlt,
@@ -12,68 +9,138 @@ import {
     FaBars,
 } from "react-icons/fa";
 import { useState } from "react";
-// import mloc from "../assets/micon.png";
-// import mlocw from "../assets/micon-white.webp";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Sidebar = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const navItems = [
         { to: "/", label: "Dashboard", icon: <FaHome /> },
         { to: "/diets", label: "Diets", icon: <FaListUl /> },
         { to: "/recipes", label: "Recipes", icon: <FaUtensils /> },
-        // { to: "/ingredients", label: "Ingredients", icon: <FaCarrot /> },
-        // { to: "/workouts", label: "Workouts", icon: <FaDumbbell /> },
-        // { to: "/exercises", label: "Exercises", icon: <FaRunning /> },
         { to: "/settings", label: "Settings", icon: <FaCog /> },
     ];
 
     return (
-        <div className={`h-screen transition-all duration-300 ${collapsed ? "w-20" : "w-64"} bg-[#101322] text-white flex flex-col dark:bg-[#0c0d0f] `}>
-        {/* <div className={`h-screen transition-all duration-300 ${collapsed ? "w-20" : "w-64"} bg-gradient-to-b from-purple-700 to-pink-500 text-white flex flex-col`}> */}
-
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 font-bold text-lg tracking-widest ">
-                {!collapsed && 
-                
-                // <span>Meal Map</span>
-                    <h2 className="flex items-center gap-2 m-4 text-xl font-bold tracking-tight text-white dark:text-white sm:text-xl">
-                        <span >MealMap <span className="text-green-600">AI</span></span>
-                        {/* <img src={mloc} alt="MealMap Logo" className="block dark:hidden h-[32px] w-auto" /> */}
-                        {/* <img src={mlocw} alt="MealMap Logo" className="hidden dark:block h-[32px] w-auto" /> */}
+        <div
+            className={`
+                h-screen flex-shrink-0
+                ${expanded ? "w-64" : "w-20"}
+                flex flex-col
+                bg-[#101322] text-white
+                dark:bg-[#0c0d0f]
+                transition-[width] duration-[350ms] ease-in-out
+                overflow-hidden
+            `}
+        >
+            {/* HEADER */}
+            <div className="
+                relative flex items-center justify-center
+                h-24 px-4
+                border-b border-white/10
+                flex-shrink-0
+            ">
+                <div className="flex items-center justify-center w-full overflow-hidden">
+                    <h2
+                        className={`
+                            whitespace-nowrap text-xl font-bold tracking-tight
+                            transition-opacity duration-300
+                            ${expanded ? "opacity-100" : "opacity-0"}
+                        `}
+                    >
+                        MealMap <span className="text-green-500">AI</span>
                     </h2>
-                
-                }
-                <button onClick={() => setCollapsed(!collapsed)} className="text-white">
-                    <FaBars />
+                </div>
+
+                <button
+                    onClick={() => setExpanded(prev => !prev)}
+                    aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
+                    className="
+                        absolute right-2
+                        p-2 rounded-md
+                        hover:bg-white/10
+                        transition-colors
+                    "
+                >
+                    {expanded
+                        ? <ChevronLeft size={18} />
+                        : <ChevronRight size={18} />
+                    }
                 </button>
             </div>
 
-            {/* Navigation */}
-            <nav className="flex-1 px-2 space-y-2">
-                {navItems.map(({ to, label, icon }) => (
-                    <NavLink
-                        key={to}
-                        to={to}
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-md hover:bg-white
-                             hover:text-purple-700 transition 
-                            ${isActive ? "bg-white dark:bg-[#252628] text-purple-700 font-semibold" : ""}
-                             dark:text-white dark:hover:bg-[#2f3033]`
-                        }
-                    >
-                        {icon}
-                        {!collapsed && <span>{label}</span>}
-                    </NavLink>
-                ))}
-            </nav>
+            {/* NAVIGATION */}
+            <div className="flex flex-col flex-1 overflow-hidden">
 
-            {/* Logout */}
-            <div className="p-4 border-t border-white/20">
-                <button className="flex items-center gap-3 p-3 rounded-md w-full hover:bg-white hover:text-purple-700 transition">
-                    <FaSignOutAlt />
-                    {!collapsed && <span>Logout</span>}
-                </button>
+                <nav className="
+                    flex-1 pt-6 px-3
+                    space-y-2
+                    overflow-y-auto overflow-x-hidden
+                ">
+                    {navItems.map(({ to, label, icon }) => (
+                        <NavLink
+                            key={to}
+                            to={to}
+                            title={!expanded ? label : undefined}
+                            className={({ isActive }) => `
+                                flex items-center gap-4
+                                py-3.5 px-4
+                                rounded-lg
+                                whitespace-nowrap
+                                transition-colors duration-200
+                                ${
+                                    isActive
+                                        ? "bg-white/10 text-green-400 font-semibold"
+                                        : "text-gray-300 hover:bg-white/10 hover:text-white"
+                                }
+                            `}
+                        >
+                            <span className="
+                                text-xl w-7 flex-shrink-0
+                                flex items-center justify-center
+                            ">
+                                {icon}
+                            </span>
+
+                            <span className={`
+                                overflow-hidden
+                                transition-opacity duration-200 delay-100
+                                ${expanded ? "opacity-100" : "opacity-0"}
+                            `}>
+                                {label}
+                            </span>
+                        </NavLink>
+                    ))}
+                </nav>
+
+                {/* LOGOUT */}
+                <div className="px-3 pb-6 pt-4 border-t border-white/10 mt-auto">
+                    <button
+                        className="
+                            flex items-center gap-4
+                            py-3.5 px-4 w-full
+                            rounded-lg whitespace-nowrap
+                            text-gray-300
+                            hover:bg-white/10 hover:text-red-400
+                            transition-colors duration-200
+                        "
+                    >
+                        <span className="
+                            text-xl w-7 flex-shrink-0
+                            flex items-center justify-center
+                        ">
+                            <FaSignOutAlt />
+                        </span>
+
+                        <span className={`
+                            overflow-hidden
+                            transition-opacity duration-200 delay-100
+                            ${expanded ? "opacity-100" : "opacity-0"}
+                        `}>
+                            Logout
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     );

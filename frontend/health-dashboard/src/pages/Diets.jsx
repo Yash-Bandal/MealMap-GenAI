@@ -121,7 +121,7 @@ const Diets = () => {
 
   return (
     <div className="py-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
       {/* <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"> */}
         <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#0c0d0f]/70 sm:p-10">
           

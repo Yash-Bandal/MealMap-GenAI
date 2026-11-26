@@ -70,8 +70,8 @@ const Dashboard = () => {
     setFormValues(data);
 
     try {
-      // const res = await fetch("http://127.0.0.1:5000/recommendations", {
-        const res = await fetch("https://mealmap-genai.onrender.com/recommendations", {
+      const res = await fetch("http://127.0.0.1:8000/recommendations", {
+        // const res = await fetch("https://mealmap-genai.onrender.com/recommendations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -86,7 +86,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="space-y-8 p-6 max-w-7xl mx-auto">
+    <div className="space-y-8 p-6 max-w-8xl mx-auto">
       <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-white p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#0c0d0f]/70 sm:p-10">
         {/* <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-24 -top-28 h-64 w-64 rounded-full bg-gradient-to-br from-coralStart/25 to-transparent blur-2xl" />
